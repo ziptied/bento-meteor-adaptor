@@ -53,9 +53,6 @@ import { Accounts } from 'meteor/accounts-base';
 import { configureBentoMail } from 'meteor/bento:meteor-mail';
 
 Meteor.startup(() => {
-  // Configure Bento Mail Transport
-  configureBentoMail();
-
   // Configure email templates
   Accounts.emailTemplates.from = 'your-email@domain.com'; / MUST be an email address in your list of authors on Bento, or this will throw an error.
   Accounts.emailTemplates.siteName = 'Your Site Name';
