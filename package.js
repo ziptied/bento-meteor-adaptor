@@ -7,8 +7,8 @@ Package.describe({
 });
 
 Package.onUse(function(api) {
-    api.versionsFrom('2.5');
+    api.versionsFrom('3.1.1'); // We changed to 3.1.1 to satisy Meteor 3.1.1 requirements
     api.use('ecmascript');
     api.use('email');
-    api.mainModule('dist/index.js', 'server');
+    api.mainModule('server/index.js', 'server'); // Changed to 'server' to follow Meteor client/server structure. Peace of mind to know this code will only run on the server.
 });
