@@ -1,0 +1,32 @@
+{
+  "name": "@bentonow/meteor-mail",
+  "version": "1.0.0",
+  "description": "Bento mail transport for Meteor.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "meteor",
+    "email",
+    "bento",
+    "mail",
+    "transport"
+  ],
+  "dependencies": {
+    "@bentonow/bento-node-sdk": "^1.0.4"
+  },
+  "peerDependencies": {
+    "meteor-node-stubs": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/meteor": "^2.9.4",
+    "typescript": "^5.0.0"
+  }
+}
