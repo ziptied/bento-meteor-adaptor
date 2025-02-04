@@ -54,7 +54,7 @@ import { configureBentoMail } from 'meteor/bento:meteor-mail';
 
 Meteor.startup(() => {
   // Configure email templates
-  Accounts.emailTemplates.from = 'your-email@domain.com'; / MUST be an email address in your list of authors on Bento, or this will throw an error.
+  Accounts.emailTemplates.from = 'your-email@domain.com'; // MUST be an email address in your list of authors on Bento, or this will throw an error.
   Accounts.emailTemplates.siteName = 'Your Site Name';
 
   // Configure verification email template
