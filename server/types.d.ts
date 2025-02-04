@@ -4,7 +4,7 @@ export interface BentoMailConfig {
     secretKey: string;
 }
 
-export interface BentoMailOptions {
+export interface BentoMailOptions extends Email.CustomEmailOptions {
     to: string | string[];
     from: string;
     subject: string;
