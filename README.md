@@ -50,7 +50,6 @@ In your server's main entry point (e.g., `server/main.ts`), add the following co
 ```typescript
 import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base';
-import { configureBentoMail } from 'meteor/bento:meteor-mail';
 
 Meteor.startup(() => {
   // Configure email templates
