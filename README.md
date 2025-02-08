@@ -1,25 +1,60 @@
-# Bento Meteor Mail
+# Bento Meteor SDK
+<img align="right" src="https://app.bentonow.com/brand/logoanim.gif">
 
-A Meteor package that provides Bento email transport integration for your Meteor application.
+> [!TIP]
+> Need help? Join our [Discord](https://discord.gg/ssXXFRmt5F) or email jesse@bentonow.com for personalized support.
 
-Usually, you could just use the Bento SDK, but this package enables you to integrate into Meteor's email system, which is useful for baked-in features like account verification emails, password reset emails, etc.
+The Bento Meteor SDK makes it quick and easy to send emails through Meteor's built-in email system. We provide seamless integration with Meteor's email functionality, including account verification emails, password reset emails, and custom transactional emails.
 
-This was created for Meteor 3.1.1 (using meteor-email 3.1.1).
+Get started with our [📚 integration guides](https://docs.bentonow.com), or [📘 browse the SDK reference](https://docs.bentonow.com/subscribers).
 
-If you're running an older version, you could try editing `api.versionsFrom('3.1.1');` in the `package.js` file to accept older versions of Meteor (although this has not been tested).
+🐶 Battle-tested by [Artist.tools](https://artist.tools) (a Bento customer)!
 
-## Installation
+❤️ Thank you [@aarongainz](https://github.com/aarongainz) for your contribution.
 
-Put this package in your `packages` directory, then run:
+Table of contents
+=================
+
+<!--ts-->
+* [Features](#features)
+* [Requirements](#requirements)
+* [Getting started](#getting-started)
+    * [Installation](#installation)
+    * [Configuration](#configuration)
+* [Usage](#usage)
+* [Things to Know](#things-to-know)
+* [Contributing](#contributing)
+* [License](#license)
+<!--te-->
+
+## Features
+
+* **Native Meteor Integration**: Seamlessly integrates with Meteor's built-in email system
+* **Account Email Support**: Works with Meteor's account verification and password reset emails
+* **Simple Configuration**: Easy setup with environment variables or Meteor settings
+* **Type Safety**: Includes TypeScript definitions for all configurations and options
+
+## Requirements
+
+- Meteor 3.1.1+
+- meteor-email 3.1.1+
+- Bento API Keys
+
+## Getting started
+
+### Installation
+
+Install the package via Meteor:
+
 ```bash
 meteor add bento:meteor-mail
 ```
 
-## Configuration
+### Configuration
 
-### 1. Environment Variables
+You can configure the package in three ways:
 
-You can configure the package using environment variables:
+1. Using environment variables:
 
 ```bash
 BENTO_SITE_UUID=your_site_uuid
@@ -27,9 +62,7 @@ BENTO_PUBLISHABLE_KEY=your_publishable_key
 BENTO_SECRET_KEY=your_secret_key
 ```
 
-### 2. Meteor Settings
-
-Alternatively, you can configure through `settings.json`:
+2. Using Meteor settings (`settings.json`):
 
 ```json
 {
@@ -43,20 +76,16 @@ Alternatively, you can configure through `settings.json`:
 }
 ```
 
-### 3. Server Setup
-
-In your server's main entry point (e.g., `server/main.ts`), add the following configuration:
+3. Server setup in your main entry point:
 
 ```typescript
 import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base';
 
 Meteor.startup(() => {
-  // Configure email templates
-  Accounts.emailTemplates.from = 'your-email@domain.com'; // MUST be an email address in your list of authors on Bento, or this will throw an error.
+  Accounts.emailTemplates.from = 'your-email@domain.com';
   Accounts.emailTemplates.siteName = 'Your Site Name';
 
-  // Configure verification email template
   Accounts.emailTemplates.verifyEmail = {
     subject() {
       return 'Verify your email address';
@@ -72,7 +101,7 @@ Meteor.startup(() => {
 
 ## Usage
 
-Once configured, you can use Meteor's standard email functionality, and emails will be sent through Bento:
+Once configured, use Meteor's standard email functionality to send emails through Bento:
 
 ```typescript
 import { Email } from 'meteor/email';
@@ -85,32 +114,18 @@ Email.send({
 });
 ```
 
-## Types
+## Things to Know
 
-The package includes TypeScript definitions for configuration and email options:
+1. The sender email address (`from`) MUST be configured as an author in your Bento account
+2. Bento does not support `no-reply` sender addresses
+3. The package will throw a `Meteor.Error` with code 'email-failed' if there are sending issues
+4. For older Meteor versions, you may try editing `api.versionsFrom('3.1.1')` in `package.js`, but this is untested
+5. For more advanced usage, refer to the [Bento API Documentation](https://docs.bentonow.com)
 
-```typescript
-interface BentoMailConfig {
-  siteUuid: string;
-  publishableKey: string;
-  secretKey: string;
-}
+## Contributing
 
-interface BentoMailOptions {
-  to: string | string[];
-  from: string;
-  subject: string;
-  text?: string;
-  html?: string;
-  headers?: Record<string, string>;
-}
-```
+We welcome contributions! Please see our [contributing guidelines](CODE_OF_CONDUCT.md) for details on how to submit pull requests, report issues, and suggest improvements.
 
-## Error Handling
+## License
 
-The package will throw a `Meteor.Error` with the code 'email-failed' if there are any issues sending emails through Bento. Make sure to handle these errors appropriately in your application.
-
-## Dependencies
-
-- @bentonow/bento-node-sdk: ^1.0.4
-- meteor-node-stubs (peer dependency)
+The Bento SDK for Meteor is available as open source under the terms of the [MIT License](LICENSE.md).
